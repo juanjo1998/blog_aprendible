@@ -3,14 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Jorenvh\Share\Share;
 
 class PostController extends Controller
 {
-    public function index()
+    public function show(Post $post)
     {
-        $posts = Post::orderBy('id','desc')->get();
+        $share = new Share();
 
-        return view('welcome',compact('posts'));
+        $socialShare = $share->page('http://blog_aprendible.test/posts/post-de-prueba',$post->title.':')
+        ->facebook()
+        ->twitter()
+        ->whatsapp();
+
+        return view('posts.show',compact('post','socialShare'));
     }
 }

@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Post;
 use App\Models\Tag;
+use App\Models\Post;
+use App\Models\Image;
 use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
@@ -17,9 +18,15 @@ class PostSeeder extends Seeder
     {
          $posts = Post::factory(10)->create();
 
-         foreach ($posts as $post) {
-             $tags = Tag::factory(3)->create();
+         $tags = Tag::factory(3)->create();    
 
+         foreach ($posts as $post) {
+                        
+             /* Image::factory(1)->create([
+                 'imageable_id' => $post->id,
+                 'imageable_type' => Post::class
+             ]);
+ */
              foreach($tags as $tag){
                  $post->tags()->attach([
                      'tag_id' => $tag->id

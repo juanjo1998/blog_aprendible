@@ -4,13 +4,24 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Zendero</title>
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/framework.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/responsive.css">
+	<title>@yield('meta-title',config('app.name').' | Home')</title>
+	<meta name="description" content="@yield('meta-description','Sitio web J2Dev. En este espacio puedes encontrar información acerca de mis proyectos, blog, e información para que te contactes conmigo.')">
+{{-- 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"> --}}
+	<link rel="stylesheet" href="{{asset('css/framework.css')}}">
+	<link rel="stylesheet" href="{{asset('css/style.css')}}">
+	<link rel="stylesheet" href="{{asset('css/responsive.css')}}">
+	<link rel="stylesheet" href="{{asset('css/common.css')}}">
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+	{{-- stack css --}}
+
+	@stack('css')
+	
+	<script src="https://kit.fontawesome.com/be57f6571a.js" crossorigin="anonymous"></script>
 	<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+
+	
 </head>
 <body>
 	<div class="preload"></div>
@@ -20,10 +31,12 @@
 			<nav class="custom-wrapper" id="menu">
 				<div class="pure-menu"></div>
 				<ul class="container-flex list-unstyled">
-					<li><a href="index.html" class="text-uppercase">Home</a></li>
-					<li><a href="about.html" class="text-uppercase">About</a></li>
-					<li><a href="archive.html" class="text-uppercase">Archive</a></li>
-					<li><a href="contact.html" class="text-uppercase">Contact</a></li>
+					<li class="nav-item"><a href="{{route('home')}}" class="text-uppercase nav-link 
+						@routeIs('home') active @endif
+						">Home</a></li>
+					<li class="nav-item"><a href="about.html" class="text-uppercase nav-link">About</a></li>
+					<li class="nav-item"><a href="archive.html" class="text-uppercase nav-link">Archive</a></li>
+					<li class="nav-item"><a href="contact.html" class="text-uppercase nav-link">Contact</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -37,7 +50,7 @@
     <section class="footer">
 		<footer>
 			<div class="container">
-				<figure class="logo"><img src="img/logo.png" alt=""></figure>
+				<figure class="logo"><img src="{{asset('assets/img/logo.png')}}" alt=""></figure>
 				<nav>
 					<ul class="container-flex space-center list-unstyled">
 						<li><a href="index.html" class="text-uppercase c-white">home</a></li>
@@ -59,6 +72,8 @@
 			</div>
 		</footer>
 	</section>
+
+	@stack('scripts')
 	
 </body>
 </html>

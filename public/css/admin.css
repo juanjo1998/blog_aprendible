@@ -1,0 +1,19 @@
+.imgs-post-list{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.imgs-post-list li{
+    list-style-type: none;
+    margin-right: 5px;
+    border: 1px solid #000;
+
+}
+
+.img-post-list{
+    width: 87px;
+    height: 87px;
+    object-fit: cover;
+}

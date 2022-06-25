@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\FileController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('admin',function(){
-    return view('admin.dashboard');
-});
+Route::get('/',[AdminController::class,'index'])->name('home');
+
+/* posts */
+Route::resource('posts',PostController::class)->names('posts');
+
+Route::post('posts/{post}/files',[PostController::class,'files']);
+
+Route::delete('posts/{image}/files/destroy',[ImageController::class,'destroy'])->name('posts.files.destroy');

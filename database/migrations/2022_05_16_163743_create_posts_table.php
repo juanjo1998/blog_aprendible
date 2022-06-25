@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->string('title');
+            $table->string('iframe')->nullable();
             $table->string('slug');
             $table->mediumText('excerpt');
             $table->text('body');

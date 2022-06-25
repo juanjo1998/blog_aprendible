@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +17,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[PostController::class,'index'])->name('welcome');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/* pages */
+Route::get('/',[PageController::class,'home'])->name('home');
+
+/* posts */
+Route::resource('posts',PostController::class)->names('posts');
+
+/* category */
+
+Route::get('posts-category/{category}',[CategoryController::class,'show'])->name('categories.show');
+
+/* tags */
+
+Route::get('posts-tag/{tag}',[TagController::class,'show'])->name('tags.show');
